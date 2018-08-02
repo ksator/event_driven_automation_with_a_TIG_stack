@@ -1,0 +1,15 @@
+master:
+    image: ksator/saltstack_master_junos_syslog_engine_docker:latest
+    container_name: master
+    ports:
+        - "516:516/udp"
+        - "4505:4505"
+        - "4506:4506"
+    tty: true
+minion1:
+    image: ksator/saltstack_minion_junos_modules_docker:latest
+    container_name: minion1
+    ports:
+        - "4605:4505"
+        - "4606:4506"
+    tty: true
