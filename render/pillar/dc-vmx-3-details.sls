@@ -4,4 +4,3 @@ proxy:
     username: lab
     port: 830
     passwd: m0naco
-
