@@ -1,7 +1,7 @@
 # About this repository
 
 This repository provides a docker-compose file for SaltStack master and minion, including the dependencies to use Junos modules and Junos syslog engine.  
-
+It also has a python script that generate saltstack files from templates.  
 This repository has been tested with an Ubuntu host running 16.04 release.
 
 # requirements
