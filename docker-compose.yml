@@ -16,8 +16,8 @@ services:
             - "4506:4506"
         volumes:
             - ./render/master:/etc/salt/master 
-            - ./render/pillar/*:/srv/pillar/
-            - ./render/salt/*:/src/salt/
+            - ./render/pillar/.:/srv/pillar/
+            - ./render/salt/.:/src/salt/
 #        command: service salt-master start
         tty: true
 
