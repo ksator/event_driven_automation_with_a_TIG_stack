@@ -109,6 +109,18 @@ docker-compose --version
 git clone https://github.com/ksator/saltstack_junos_docker_compose.git
 cd saltstack_junos_docker_compose
 ```
+
+## Update the variables
+
+vi variables.yml
+
+## Run this script
+
+It will use your variables to create saltstack files (pillars, minion and proxy configurartion files, ...)
+```
+python render.py
+```
+
 ## run these commands
 
 ```
