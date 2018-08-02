@@ -1,0 +1,16 @@
+runner_dirs:
+    - /srv/runners
+engines:
+    - junos_syslog:
+        port: 516
+    - webhook:
+        port: 5001
+pillar_roots:
+    base:
+        - /srv/pillar
+fileserver_backend:
+    - roots
+file_roots:
+    base:
+        - /srv/salt
+auto_accept: True
