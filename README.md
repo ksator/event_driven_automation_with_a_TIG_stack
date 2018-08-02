@@ -16,7 +16,6 @@ pip install pyyaml jinja2
 pip list
 ```
 
-
 ## install docker 
 
 Check if Docker is already installed 
@@ -114,26 +113,22 @@ cd saltstack_junos_docker_compose
 
 vi variables.yml
 
-## Run this script
+## Generate SaltStack files
 
-It will use your variables to create saltstack files (pillars, minion and proxy configurartion files, ...)
+Run this script to generate SaltStack files.  
+It uses your variables to create saltstack files (pillars, minion and proxy configurartion files, ...)
 ```
 python render.py
 ```
 
-## run these commands
+## run these commands to start the containers
 
 ```
 docker-compose -f docker-compose.yml up -d
 docker images
 docker ps
 ```
-```
-docker-compose -f docker-compose.yml down
-docker images
-docker ps
-docker ps -a
-```
+
 ## If you want to connect to a running container cli, run these commands:
 ```
 docker exec -it master bash
@@ -144,3 +139,40 @@ docker exec -it minion1 bash
 exit
 ```
 
+## Start the salt service
+Run these commands to start the salt service
+```
+docker exec -it master service salt-master start
+docker exec -it minion1 service salt-minion start
+```
+## Verify the setup works
+```
+docker exec -it master salt-key -L
+```
+```
+docker exec -it master salt minion1 test.ping
+docker exec -it master salt "minion1" cmd.run "pwd"
+```
+```
+docker exec -it minion1 salt-proxy -d --proxyid=dc-vmx-3
+docker exec -it master salt dc-vmx-3 junos.cli 'show chassis hardware'
+```
+
+## Verify the junos syslog engine 
+```
+docker exec -it master salt 'dc-vmx-3' state.apply syslog
+```
+Connect to the master cli and watch the event bus:  
+```
+docker exec -it master bash
+salt-run state.event pretty=True
+```
+ssh the junos device and commit a configuration change and watch the event bus on the master
+
+## run these commands to stop the containers
+```
+docker-compose -f docker-compose.yml down
+docker images
+docker ps
+docker ps -a
+```
