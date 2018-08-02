@@ -1,0 +1,9 @@
+system {
+    syslog {
+        host {{ host_ip }} {
+            any any;
+            match "UI_COMMIT_COMPLETED";
+            port 516;
+        }
+    }
+}
