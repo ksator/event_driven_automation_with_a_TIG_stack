@@ -8,6 +8,15 @@ This repository has been tested with an Ubuntu host running 16.04 release.
 
 You first need to install Docker and Docker-compose on your Ubuntu host 
 
+## install these dependencies
+```
+sudo apt-get update
+sudo apt-get install python-pip -y
+pip install pyyaml jinja2
+pip list
+```
+
+
 ## install docker 
 
 Check if Docker is already installed 
