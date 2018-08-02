@@ -97,11 +97,11 @@ docker-compose --version
 
 ## clone the repository
 ```
-cd
 git clone https://github.com/ksator/saltstack_junos_docker_compose.git
 cd saltstack_junos_docker_compose
 ```
 ## run these commands
+
 ```
 docker-compose -f docker-compose.yml up -d
 docker images
@@ -113,5 +113,13 @@ docker images
 docker ps
 docker ps -a
 ```
-
+## If you want to connect to a running container cli, run these commands:
+```
+docker exec -it master bash
+exit
+```
+```
+docker exec -it minion1 bash
+exit
+```
 

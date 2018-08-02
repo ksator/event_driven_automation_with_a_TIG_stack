@@ -15,7 +15,8 @@ services:
             - "4505:4505"
             - "4506:4506"
         volumes:
-            - $HOME/saltstack_junos_docker_compose/master:/etc/salt/master 
+            - ./master:/etc/salt/master 
+#        command: service salt-master start
         tty: true
 
     minion1:
@@ -27,6 +28,8 @@ services:
             - "4605:4505"
             - "4606:4506"
         volumes: 
-            - $HOME/saltstack_junos_docker_compose/minion:/etc/salt/minion
-            - $HOME/saltstack_junos_docker_compose/proxy:/etc/salt/proxy
+            - ./minion:/etc/salt/minion
+            - ./proxy:/etc/salt/proxy
+#        command: service salt-minion start
         tty: true
+
