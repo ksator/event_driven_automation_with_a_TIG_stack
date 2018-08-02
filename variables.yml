@@ -1,0 +1,13 @@
+host_ip: 172.30.52.248
+junos: 
+    - name: dc-vmx-3
+      ip: 172.30.52.152
+      passwd: m0naco
+      username: lab
+      port: 830
+    - name: dc-vmx-4
+      ip: 172.30.52.153 
+      passwd: m0naco 
+      username: lab
+      port: 830
+
