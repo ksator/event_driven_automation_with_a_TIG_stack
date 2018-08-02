@@ -15,7 +15,9 @@ services:
             - "4505:4505"
             - "4506:4506"
         volumes:
-            - ./master:/etc/salt/master 
+            - ./render/master:/etc/salt/master 
+            - ./render/pillar/*:/srv/pillar/
+            - ./render/salt/*:/src/salt/
 #        command: service salt-master start
         tty: true
 
@@ -28,8 +30,8 @@ services:
             - "4605:4505"
             - "4606:4506"
         volumes: 
-            - ./minion:/etc/salt/minion
-            - ./proxy:/etc/salt/proxy
+            - ./render/minion:/etc/salt/minion
+            - ./render/proxy:/etc/salt/proxy
 #        command: service salt-minion start
         tty: true
 
