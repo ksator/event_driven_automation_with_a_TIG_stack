@@ -1,15 +1,32 @@
-master:
-    image: ksator/saltstack_master_junos_syslog_engine_docker:latest
-    container_name: master
-    ports:
-        - "516:516/udp"
-        - "4505:4505"
-        - "4506:4506"
-    tty: true
-minion1:
-    image: ksator/saltstack_minion_junos_modules_docker:latest
-    container_name: minion1
-    ports:
-        - "4605:4505"
-        - "4606:4506"
-    tty: true
+version: '2'
+
+networks:
+    salt:
+
+services: 
+
+    master:
+        networks:
+            - salt
+        image: ksator/saltstack_master_junos_syslog_engine_docker:latest
+        container_name: master
+        ports:
+            - "516:516/udp"
+            - "4505:4505"
+            - "4506:4506"
+        volumes:
+            - $HOME/saltstack_junos_docker_compose/master:/etc/salt/master 
+        tty: true
+
+    minion1:
+        networks:
+            - salt
+        image: ksator/saltstack_minion_junos_modules_docker:latest
+        container_name: minion1
+        ports:
+            - "4605:4505"
+            - "4606:4506"
+        volumes: 
+            - $HOME/saltstack_junos_docker_compose/minion:/etc/salt/minion
+            - $HOME/saltstack_junos_docker_compose/proxy:/etc/salt/proxy
+        tty: true
