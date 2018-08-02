@@ -95,6 +95,13 @@ docker-compose --version
 ```
 # Usage
 
+## clone the repository
+```
+cd
+git clone https://github.com/ksator/saltstack_junos_docker_compose.git
+cd saltstack_junos_docker_compose
+```
+## run these commands
 ```
 docker-compose -f docker-compose.yml up -d
 docker images
@@ -104,6 +111,7 @@ docker ps
 docker-compose -f docker-compose.yml down
 docker images
 docker ps
+docker ps -a
 ```
 
 
