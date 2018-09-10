@@ -34,4 +34,8 @@ services:
             - ./render/proxy:/etc/salt/proxy
 #        command: service salt-minion start
         tty: true
+        depends_on:
+            - "master"
+
+
 

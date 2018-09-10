@@ -111,7 +111,9 @@ cd saltstack_junos_docker_compose
 
 ## Update the variables
 
+```
 vi variables.yml
+```
 
 ## Generate SaltStack files
 
@@ -156,6 +158,13 @@ docker exec -it master salt "minion1" cmd.run "pwd"
 ```
 docker exec -it minion1 salt-proxy -d --proxyid=dc-vmx-3
 docker exec -it master salt dc-vmx-3 junos.cli 'show chassis hardware'
+```
+```
+docker exec -it minion1 salt-proxy -d --proxyid=dc-vmx-4
+docker exec -it master salt dc-vmx-4 junos.cli 'show chassis hardware'
+```
+```
+docker exec -it master salt-key -L
 ```
 
 ## Verify the junos syslog engine 
