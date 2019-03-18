@@ -1,41 +1,75 @@
+---
 version: '2'
 
 networks:
-    salt:
+  salt:
 
-services: 
+services:
+  master:
+    networks:
+        - salt
+    image: ksator/saltstack_master_junos_syslog_engine_docker:latest
+    container_name: master
+    ports:
+        - "516:516/udp"
+        - "4505:4505"
+        - "4506:4506"
+    volumes:
+        - ./render/master:/etc/salt/master
+        - ./render/pillar/.:/srv/pillar/
+        - ./render/salt/.:/srv/salt/
+    tty: true
 
-    master:
-        networks:
-            - salt
-        image: ksator/saltstack_master_junos_syslog_engine_docker:latest
-        container_name: master
-        ports:
-            - "516:516/udp"
-            - "4505:4505"
-            - "4506:4506"
-        volumes:
-            - ./render/master:/etc/salt/master 
-            - ./render/pillar/.:/srv/pillar/
-            - ./render/salt/.:/srv/salt/
-#        command: service salt-master start
-        tty: true
+  minion1:
+    networks:
+        - salt
+    image: ksator/saltstack_minion_junos_modules_docker:latest
+    container_name: minion1
+    ports:
+        - "4605:4505"
+        - "4606:4506"
+    volumes:
+        - ./render/minion:/etc/salt/minion
+        - ./render/proxy:/etc/salt/proxy
+    tty: true
+    depends_on:
+        - "master"
 
-    minion1:
-        networks:
-            - salt
-        image: ksator/saltstack_minion_junos_modules_docker:latest
-        container_name: minion1
-        ports:
-            - "4605:4505"
-            - "4606:4506"
-        volumes: 
-            - ./render/minion:/etc/salt/minion
-            - ./render/proxy:/etc/salt/proxy
-#        command: service salt-minion start
-        tty: true
-        depends_on:
-            - "master"
+  influxdb:
+    image: influxdb:1.7.2
+    container_name: influxdb
+    expose:
+      - 8086
+      - 8083
+    networks:
+      - salt
+
+  telegraf-snmp:
+    image: ksator/telegraf_with_snmp_mib
+    container_name: telegraf-snmp
+    volumes:
+      - $PWD/configs/telegraf-snmp.conf:/etc/telegraf/telegraf.conf:ro
+    depends_on:
+      - "influxdb"
+    networks:
+      - salt
+
+  grafana:
+    image: grafana/grafana:5.4.2
+    container_name: grafana
+    ports:
+      - "9081:3000"
+    environment:
+      - GF_SECURITY_ADMIN_USER=jcluser
+      - GF_SECURITY_ADMIN_PASSWORD=Juniper!1
+    volumes:
+      - $PWD/configs/datasource.yaml:/etc/grafana/provisioning/datasources/datasource.yaml:ro
+      - $PWD/configs/dashboards.yaml:/etc/grafana/provisioning/dashboards/dashboards.yaml:ro
+      - $PWD/dashboards:/var/tmp/dashboards
+    depends_on:
+      - "telegraf-snmp"
+    networks:
+      - salt
 
 
 
