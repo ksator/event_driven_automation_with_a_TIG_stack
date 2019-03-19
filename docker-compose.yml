@@ -16,9 +16,9 @@ services:
         - "4506:4506"
         - "5001:5001"
     volumes:
-        - ./render/master:/etc/salt/master
-        - ./render/pillar/.:/srv/pillar/
-        - ./render/salt/.:/srv/salt/
+        - ./saltstack/master:/etc/salt/master
+        - ./saltstack/pillar/.:/srv/pillar/
+        - ./saltstack/salt/.:/srv/salt/
     tty: true
 
   minion1:
@@ -30,8 +30,8 @@ services:
         - "4605:4505"
         - "4606:4506"
     volumes:
-        - ./render/minion:/etc/salt/minion
-        - ./render/proxy:/etc/salt/proxy
+        - ./saltstack/minion:/etc/salt/minion
+        - ./saltstack/proxy:/etc/salt/proxy
     tty: true
     depends_on:
         - "master"
@@ -55,6 +55,27 @@ services:
     networks:
       - salt
 
+
+  telegraf-openconfig:
+    image: telegraf:1.9.1
+    container_name: telegraf-openconfig
+    volumes:
+      - $PWD/configs/telegraf-openconfig.conf:/etc/telegraf/telegraf.conf:ro
+    depends_on:
+      - "influxdb"
+    networks:
+      - salt
+
+
+  request-tracker:
+    image: netsandbox/request-tracker
+    container_name: request-tracker
+    ports:
+      - "9080:80"
+    networks:
+      - salt
+
+
   grafana:
     image: grafana/grafana:5.4.2
     container_name: grafana
@@ -69,6 +90,7 @@ services:
       - $PWD/dashboards:/var/tmp/dashboards
     depends_on:
       - "telegraf-snmp"
+      - "telegraf-openconfig"
     networks:
       - salt
 

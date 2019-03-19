@@ -1,13 +1,37 @@
 host_ip: 100.123.35.1
 junos: 
-    - name: vMX0
+    - name: vMX1
       ip: 100.123.1.0
       passwd: Juniper!1
       username: jcluser
       port: 830
-    - name: vMX1
+    - name: vMX2
       ip: 100.123.1.1 
       passwd: Juniper!1
       username: jcluser
       port: 830
+    - name: vMX3
+      ip: 100.123.1.2
+      passwd: Juniper!1
+      username: jcluser
+      port: 830
+    - name: vMX4
+      ip: 100.123.1.3
+      passwd: Juniper!1
+      username: jcluser
+      port: 830
+    - name: vMX5
+      ip: 100.123.1.4
+      passwd: Juniper!1
+      username: jcluser
+      port: 830
+    - name: vMX6
+      ip: 100.123.1.5
+      passwd: Juniper!1
+      username: jcluser
+      port: 830
+    - name: vMX7
+      ip: 100.123.1.6
+      passwd: Juniper!1
+      username: jcluser
 
