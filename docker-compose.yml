@@ -88,6 +88,7 @@ services:
       - $PWD/configs/datasource.yaml:/etc/grafana/provisioning/datasources/datasource.yaml:ro
       - $PWD/configs/dashboards.yaml:/etc/grafana/provisioning/dashboards/dashboards.yaml:ro
       - $PWD/dashboards:/var/tmp/dashboards
+      - $PWD/grafana_database:/var/lib/grafana
     depends_on:
       - "telegraf-snmp"
       - "telegraf-openconfig"
