@@ -16,7 +16,7 @@
   "editable": true,
   "gnetId": null,
   "graphTooltip": 0,
-  "iteration": 1552973382553,
+  "iteration": 1553003473035,
   "links": [],
   "panels": [
     {
@@ -393,7 +393,7 @@
       "pageSize": null,
       "repeat": null,
       "repeatDirection": "h",
-      "repeatIteration": 1552973382553,
+      "repeatIteration": 1553003473035,
       "repeatPanelId": 11,
       "scopedVars": {
         "hostnames": {
@@ -572,7 +572,7 @@
       "pageSize": null,
       "repeat": null,
       "repeatDirection": "h",
-      "repeatIteration": 1552973382553,
+      "repeatIteration": 1553003473035,
       "repeatPanelId": 11,
       "scopedVars": {
         "hostnames": {
@@ -751,7 +751,7 @@
       "pageSize": null,
       "repeat": null,
       "repeatDirection": "h",
-      "repeatIteration": 1552973382553,
+      "repeatIteration": 1553003473035,
       "repeatPanelId": 11,
       "scopedVars": {
         "hostnames": {
@@ -930,7 +930,7 @@
       "pageSize": null,
       "repeat": null,
       "repeatDirection": "h",
-      "repeatIteration": 1552973382553,
+      "repeatIteration": 1553003473035,
       "repeatPanelId": 11,
       "scopedVars": {
         "hostnames": {
@@ -1109,7 +1109,7 @@
       "pageSize": null,
       "repeat": null,
       "repeatDirection": "h",
-      "repeatIteration": 1552973382553,
+      "repeatIteration": 1553003473035,
       "repeatPanelId": 11,
       "scopedVars": {
         "hostnames": {
@@ -1288,7 +1288,7 @@
       "pageSize": null,
       "repeat": null,
       "repeatDirection": "h",
-      "repeatIteration": 1552973382553,
+      "repeatIteration": 1553003473035,
       "repeatPanelId": 11,
       "scopedVars": {
         "hostnames": {
@@ -1468,7 +1468,6 @@
       {
         "allValue": null,
         "current": {
-          "tags": [],
           "text": "All",
           "value": [
             "$__all"
@@ -1485,33 +1484,6 @@
         "query": "SHOW TAG VALUES FROM \"snmp_BGP\" with KEY = \"bgpPeerRemoteAddr\"",
         "refresh": 1,
         "regex": "",
-        "skipUrlSync": false,
-        "sort": 0,
-        "tagValuesQuery": "",
-        "tags": [],
-        "tagsQuery": "",
-        "type": "query",
-        "useTags": false
-      },
-      {
-        "allValue": null,
-        "current": {
-          "text": "All",
-          "value": [
-            "$__all"
-          ]
-        },
-        "datasource": "influxdb",
-        "definition": "SHOW TAG VALUES FROM \"snmp_interfaces_statistics\" with KEY = \"ifName\"",
-        "hide": 0,
-        "includeAll": true,
-        "label": null,
-        "multi": true,
-        "name": "ifName",
-        "options": [],
-        "query": "SHOW TAG VALUES FROM \"snmp_interfaces_statistics\" with KEY = \"ifName\"",
-        "refresh": 1,
-        "regex": "((et|ge|xe).*)",
         "skipUrlSync": false,
         "sort": 0,
         "tagValuesQuery": "",
