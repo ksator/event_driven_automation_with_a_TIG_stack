@@ -16,7 +16,7 @@
   "editable": true,
   "gnetId": null,
   "graphTooltip": 0,
-  "iteration": 1553003473035,
+  "iteration": 1553030869436,
   "links": [],
   "panels": [
     {
@@ -393,7 +393,7 @@
       "pageSize": null,
       "repeat": null,
       "repeatDirection": "h",
-      "repeatIteration": 1553003473035,
+      "repeatIteration": 1553030869436,
       "repeatPanelId": 11,
       "scopedVars": {
         "hostnames": {
@@ -572,7 +572,7 @@
       "pageSize": null,
       "repeat": null,
       "repeatDirection": "h",
-      "repeatIteration": 1553003473035,
+      "repeatIteration": 1553030869436,
       "repeatPanelId": 11,
       "scopedVars": {
         "hostnames": {
@@ -751,7 +751,7 @@
       "pageSize": null,
       "repeat": null,
       "repeatDirection": "h",
-      "repeatIteration": 1553003473035,
+      "repeatIteration": 1553030869436,
       "repeatPanelId": 11,
       "scopedVars": {
         "hostnames": {
@@ -930,7 +930,7 @@
       "pageSize": null,
       "repeat": null,
       "repeatDirection": "h",
-      "repeatIteration": 1553003473035,
+      "repeatIteration": 1553030869436,
       "repeatPanelId": 11,
       "scopedVars": {
         "hostnames": {
@@ -1109,7 +1109,7 @@
       "pageSize": null,
       "repeat": null,
       "repeatDirection": "h",
-      "repeatIteration": 1553003473035,
+      "repeatIteration": 1553030869436,
       "repeatPanelId": 11,
       "scopedVars": {
         "hostnames": {
@@ -1288,7 +1288,7 @@
       "pageSize": null,
       "repeat": null,
       "repeatDirection": "h",
-      "repeatIteration": 1553003473035,
+      "repeatIteration": 1553030869436,
       "repeatPanelId": 11,
       "scopedVars": {
         "hostnames": {
@@ -1459,7 +1459,6 @@
   "tags": [
     "snmp",
     "bgp",
-    "interfaces",
     "uptime",
     "inventory"
   ],
@@ -1553,5 +1552,5 @@
   "timezone": "",
   "title": "SNMP dashboards",
   "uid": "GiQF-_Uik",
-  "version": 1
+  "version": 2
 }

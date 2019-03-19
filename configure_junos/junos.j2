@@ -11,6 +11,11 @@ interfaces {
     }
 {% endfor %}
 }
+routing-options {
+    forwarding-table {
+        export bgp-ecmp;
+    }
+}
 protocols {
     replace:
     bgp {

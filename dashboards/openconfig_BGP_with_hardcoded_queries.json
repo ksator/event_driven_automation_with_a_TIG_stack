@@ -3627,7 +3627,10 @@
   "refresh": "5s",
   "schemaVersion": 16,
   "style": "dark",
-  "tags": [],
+  "tags": [
+    "openconfig",
+    "bgp"
+  ],
   "templating": {
     "list": []
   },
@@ -3661,7 +3664,7 @@
     ]
   },
   "timezone": "",
-  "title": "openconfig BGP with hardcoded queries",
+  "title": "openconfig BGP",
   "uid": "MIAjb2ymz",
-  "version": 4
+  "version": 5
 }
