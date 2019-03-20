@@ -16,9 +16,9 @@ services:
         - "4506:4506"
         - "5001:5001"
     volumes:
-        - ./saltstack/master:/etc/salt/master
-        - ./saltstack/pillar/.:/srv/pillar/
-        - ./saltstack/salt/.:/srv/salt/
+        - ./saltstack_configuration/master:/etc/salt/master
+        - ./saltstack_configuration/pillar/.:/srv/pillar/
+        - ./saltstack_configuration/salt/.:/srv/salt/
     tty: true
 
   minion1:
@@ -30,8 +30,8 @@ services:
         - "4605:4505"
         - "4606:4506"
     volumes:
-        - ./saltstack/minion:/etc/salt/minion
-        - ./saltstack/proxy:/etc/salt/proxy
+        - ./saltstack_configuration/minion:/etc/salt/minion
+        - ./saltstack_configuration/proxy:/etc/salt/proxy
     tty: true
     depends_on:
         - "master"
@@ -49,7 +49,7 @@ services:
     image: ksator/telegraf_with_snmp_mib
     container_name: telegraf-snmp
     volumes:
-      - $PWD/configs/telegraf-snmp.conf:/etc/telegraf/telegraf.conf:ro
+      - $PWD/tig_configuration/telegraf-snmp.conf:/etc/telegraf/telegraf.conf:ro
     depends_on:
       - "influxdb"
     networks:
@@ -60,7 +60,7 @@ services:
     image: telegraf:1.9.1
     container_name: telegraf-openconfig
     volumes:
-      - $PWD/configs/telegraf-openconfig.conf:/etc/telegraf/telegraf.conf:ro
+      - $PWD/tig_configuration/telegraf-openconfig.conf:/etc/telegraf/telegraf.conf:ro
     depends_on:
       - "influxdb"
     networks:
@@ -85,9 +85,9 @@ services:
       - GF_SECURITY_ADMIN_USER=jcluser
       - GF_SECURITY_ADMIN_PASSWORD=Juniper!1
     volumes:
-      - $PWD/configs/datasource.yaml:/etc/grafana/provisioning/datasources/datasource.yaml:ro
-      - $PWD/configs/dashboards.yaml:/etc/grafana/provisioning/dashboards/dashboards.yaml:ro
-      - $PWD/dashboards:/var/tmp/dashboards
+      - $PWD/tig_configuration/datasource.yaml:/etc/grafana/provisioning/datasources/datasource.yaml:ro
+      - $PWD/tig_configuration/dashboards.yaml:/etc/grafana/provisioning/dashboards/dashboards.yaml:ro
+      - $PWD/grafana_dashboards:/var/tmp/dashboards
       - $PWD/grafana_database:/var/lib/grafana
     depends_on:
       - "telegraf-snmp"
