@@ -6,6 +6,7 @@ junos:
       username: jcluser
       netconf_port: 830
       openconfig_port: 32768
+      snmp_port: 161
       snmp_community: public
     - name: vMX2
       ip: 100.123.1.1
@@ -13,6 +14,7 @@ junos:
       username: jcluser
       netconf_port: 830
       openconfig_port: 32768
+      snmp_port: 161
       snmp_community: public
     - name: vMX3
       ip: 100.123.1.2
@@ -20,6 +22,7 @@ junos:
       username: jcluser
       netconf_port: 830
       openconfig_port: 32768
+      snmp_port: 161
       snmp_community: public
     - name: vMX4
       ip: 100.123.1.3
@@ -27,6 +30,7 @@ junos:
       username: jcluser
       netconf_port: 830
       openconfig_port: 32768
+      snmp_port: 161
       snmp_community: public
     - name: vMX5
       ip: 100.123.1.4
@@ -34,6 +38,7 @@ junos:
       username: jcluser
       netconf_port: 830
       openconfig_port: 32768
+      snmp_port: 161
       snmp_community: public
     - name: vMX6
       ip: 100.123.1.5
@@ -41,6 +46,7 @@ junos:
       username: jcluser
       netconf_port: 830
       openconfig_port: 32768
+      snmp_port: 161
       snmp_community: public
     - name: vMX7
       ip: 100.123.1.6
@@ -48,5 +54,7 @@ junos:
       username: jcluser
       netconf_port: 830
       openconfig_port: 32768
+      snmp_port: 161
       snmp_community: public
+
 

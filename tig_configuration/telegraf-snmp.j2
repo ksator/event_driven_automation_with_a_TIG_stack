@@ -1,5 +1,5 @@
 [[inputs.snmp]]
-  agents = [ "100.123.1.0:161" , "100.123.1.1:161" , "100.123.1.2:161" , "100.123.1.3:161" , "100.123.1.4:161" , "100.123.1.5:161" , "100.123.1.6:161" ] 
+  agents = [ {% for item in junos %}"{{item.ip}}:{{item.snmp_port}}" {% if not loop.last %}, {%endif%}{% endfor %}] 
   name_prefix = "snmp_"
   interval = "5000ms"
   version = 2
@@ -61,3 +61,4 @@
 [agent]
   quiet = true
   debug = false
+
