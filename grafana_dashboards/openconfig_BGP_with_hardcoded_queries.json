@@ -476,6 +476,52 @@
               "type": "avg"
             },
             "type": "query"
+          },
+          {
+            "evaluator": {
+              "params": [
+                4
+              ],
+              "type": "lt"
+            },
+            "operator": {
+              "type": "or"
+            },
+            "query": {
+              "params": [
+                "B",
+                "1m",
+                "now"
+              ]
+            },
+            "reducer": {
+              "params": [],
+              "type": "avg"
+            },
+            "type": "query"
+          },
+          {
+            "evaluator": {
+              "params": [
+                4
+              ],
+              "type": "lt"
+            },
+            "operator": {
+              "type": "or"
+            },
+            "query": {
+              "params": [
+                "C",
+                "1m",
+                "now"
+              ]
+            },
+            "reducer": {
+              "params": [],
+              "type": "avg"
+            },
+            "type": "query"
           }
         ],
         "executionErrorState": "alerting",
@@ -3715,5 +3761,5 @@
   "timezone": "",
   "title": "openconfig BGP",
   "uid": "MIAjb2ymz",
-  "version": 6
+  "version": 8
 }
