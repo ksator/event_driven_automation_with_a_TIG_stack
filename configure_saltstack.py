@@ -14,7 +14,7 @@ f=open('saltstack_templates/minion.j2')
 my_template = Template(f.read())
 f.close()
 
-f=open('saltstack/minion','w')
+f=open('saltstack_configuration/minion','w')
 f.write(my_template.render(my_variables_in_yaml))
 f.close()
 
@@ -24,7 +24,7 @@ f=open('saltstack_templates/proxy.j2')
 my_template = Template(f.read())
 f.close()
 
-f=open('saltstack/proxy','w')
+f=open('saltstack_configuration/proxy','w')
 f.write(my_template.render(my_variables_in_yaml))
 f.close()
 
@@ -35,7 +35,7 @@ f=open('saltstack_templates/syslog.j2')
 my_template = Template(f.read())
 f.close()
 
-f=open('saltstack/salt/syslog.conf','w')
+f=open('saltstack_configuration/salt/syslog.conf','w')
 f.write(my_template.render(my_variables_in_yaml))
 f.close()
 
@@ -44,7 +44,7 @@ f=open('saltstack_templates/pillars_top.j2')
 my_template = Template(f.read())
 f.close()
 
-f=open('saltstack/pillar/top.sls','w')
+f=open('saltstack_configuration/pillar/top.sls','w')
 f.write(my_template.render(my_variables_in_yaml))
 f.close()
 
@@ -53,9 +53,10 @@ my_template = Template(f.read())
 f.close()
 
 for item in my_variables_in_yaml['junos']:
-    f=open('saltstack/pillar/' + item['name'] +'-details.sls','w')
+    f=open('saltstack_configuration/pillar/' + item['name'] +'-details.sls','w')
     f.write(my_template.render(item))
     f.close()
+
 
 
 
