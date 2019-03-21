@@ -10,8 +10,9 @@ A TIG stack uses:
 This repository is about Event driven automation with a TIG stack and SaltStack.   
 
 Junos devices (spines and leaves IP fabric)  
+![topology.png](resources/topology.png)  
 
-One Ubuntu VM: 
+One Ubuntu VM (16.04) with Docker containers: 
 - Telegraf collects data from Junos devices. 
 - The data collected is stored in Influxdb. 
 - Grafana queries Influxdb and displays graphs.  
