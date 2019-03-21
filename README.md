@@ -184,14 +184,6 @@ Run this command to verify:
 jcluser@vMX1> show version | match "Junos:|openconfig|na telemetry"
 ```
 
-You can use the python script [upgrade-junos.py](upgrade-junos.py) to install these 2 packages on your Junos devices: 
-- `git clone https://github.com/ksator/event_driven_automation_with_a_TIG_stack.git`
-- `cd event_driven_automation_with_a_TIG_stack`
-- download the Junos packages ```openconfig``` and ```network agent``` from ```http://download.juniper.net/``` and save them in the `event_driven_automation_with_a_TIG_stack` directory  
-- Update the file [variables.yml](variables.yml]) with your devices details `vi variables.yml`
-- Execute the python script [upgrade-junos.py](upgrade-junos.py) `python ./upgrade-junos.py`
-
-
 ## Junos configuration 
 
 This sort of configuration is required when you use the telegraf input plugin `snmp`
