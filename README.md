@@ -7,7 +7,9 @@ A TIG stack uses:
 
 # About this repository
 
-A spines and leaves IP fabric with Junos devices.  
+This repository is about Event driven automation with a TIG stack and SaltStack.   
+
+Junos devices (spines and leaves IP fabric)  
 
 One Ubuntu VM: 
 - Telegraf collects data from Junos devices. 
@@ -25,8 +27,8 @@ This repository provides a [docker-compose.yml](docker-compose.yml) file for:
 - request tracker 
 
 It also has: 
--  a python script [upgrade_junos.py](upgrade_junos.py) to upgrade Junos with network-agent and openconfig packages 
--  a python script [configure_junos.py](configure_junos.py) to configure Junos devices
+-  a python script [upgrade_junos.py](upgrade_junos.py) to upgrade Junos with `network-agent` and `openconfig` packages 
+-  a python script [configure_junos.py](configure_junos.py) to configure Junos devices (IP Fabric with EBGP)
 -  a python script [audit_junos.py](audit_junos.py) to audit BGP sessions state 
 -  a python script [generate_telegraf_configuration.py](generate_telegraf_configuration.py) to generate Telegraf configuration files from templates.  
 -  a python script [generate_saltstack_configuration.py](generate_saltstack_configuration.py) to generate SaltStack files from templates.  
@@ -192,12 +194,12 @@ You can use the python script [upgrade-junos.py](upgrade-junos.py) to install th
 
 ## Junos configuration 
 
-This sort of configuration is required if you use the telegraf input plugin `snmp`
+This sort of configuration is required when you use the telegraf input plugin `snmp`
 ```
 jcluser@vMX-1> show configuration snmp
 community public;
 ```
-This sort of configuration is required if you use the telegraf input plugin `jti_openconfig_telemetry`
+This sort of configuration is required when you use the telegraf input plugin `jti_openconfig_telemetry`
 ```
 jcluser@vMX-1> show configuration system services extension-service | display set
 set system services extension-service request-response grpc clear-text port 32768
