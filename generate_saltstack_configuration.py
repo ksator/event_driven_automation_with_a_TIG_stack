@@ -48,6 +48,14 @@ f=open('saltstack_configuration/pillar/top.sls','w')
 f.write(my_template.render(my_variables_in_yaml))
 f.close()
 
+f=open('saltstack_templates/rt.j2')
+my_template = Template(f.read())
+f.close()
+
+f=open('saltstack_configuration/pillar/rt.sls','w')
+f.write(my_template.render(my_variables_in_yaml))
+f.close()
+
 f=open('saltstack_templates/pillars_device.j2')
 my_template = Template(f.read())
 f.close()

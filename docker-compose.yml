@@ -19,6 +19,9 @@ services:
         - ./saltstack_configuration/master:/etc/salt/master
         - ./saltstack_configuration/pillar/.:/srv/pillar/
         - ./saltstack_configuration/salt/.:/srv/salt/
+        - ./saltstack_configuration/reactor.conf:/etc/salt/master.d/reactor.conf
+        - ./saltstack_configuration/reactors/.:/srv/reactors/.
+        - ./saltstack_configuration/runners/.:/srv/runners/.
     tty: true
 
   minion1:
