@@ -1,4 +1,4 @@
-This repository is about Event driven automation with a TIG stack and SaltStack.   
+This repository is about **Event driven automation with a TIG stack and SaltStack**.   
 
 # What is a TIG stack
 
@@ -74,7 +74,7 @@ SaltStack supports event driven infrastructure
 
 SaltStack competes primarily with Puppet, Chef, StackStorm, and Ansible. 
 
-# Looking for more information about Junos monitoring with a TIG stack: 
+# Looking for more information about Junos monitoring with a TIG stack
 
 you can refer to these repositories:
 - https://github.com/ksator/collect_telemetry_from_junos_with_telegraf
@@ -82,9 +82,11 @@ you can refer to these repositories:
 - https://github.com/ksator/telegraf_with_snmp_mib
 - https://github.com/ksator/junos_monitoring_with_a_TIG_stack
 
-# requirements on the Ubuntu host
+# requirements to use this repository
 
-## install these dependencies
+## requirements on the Ubuntu host
+
+### install these dependencies
 ```
 sudo apt-get update
 sudo apt-get install python-pip -y
@@ -92,7 +94,7 @@ pip install pyyaml jinja2
 pip list
 ```
 
-## install docker 
+### install docker 
 
 Check if Docker is already installed 
 ```
@@ -165,8 +167,7 @@ $ docker --version
 Docker version 18.03.1-ce, build 9ee9f40
 ```
 
-
-## install docker-compose 
+### install docker-compose 
 
 ```
 sudo curl -L https://github.com/docker/compose/releases/download/1.22.0/docker-compose-$(uname -s)-$(uname -m) -o /usr/local/bin/docker-compose
@@ -178,11 +179,11 @@ sudo chmod +x /usr/local/bin/docker-compose
 docker-compose --version
 ```
 
-# requirements on Junos devices
+## requirements on Junos devices
 
 In this demo Telegraf will use Openconfig telemetry to collect data from Junos devices.  
 
-## Junos packages
+### Junos packages
 
 In order to collect data from Junos using openconfig telemetry, the devices require the Junos packages ```openconfig``` and ```network agent```  
 Starting with Junos OS Release 18.3R1, the Junos OS image includes these 2 packages; therefore, you do not need anymore to install them separately on your device.  
@@ -193,7 +194,7 @@ Run this command to verify:
 jcluser@vMX1> show version | match "Junos:|openconfig|na telemetry"
 ```
 
-## Junos configuration 
+### Junos configuration 
 
 This sort of configuration is required when you use the telegraf input plugin `snmp`
 ```
@@ -212,8 +213,6 @@ This sort of configuration is required if you use NETCONF
 jcluser@vMX-1> show configuration system services netconf | display set
 set system services netconf ssh
 ```
-
-
 
 # How to use this repository
 
