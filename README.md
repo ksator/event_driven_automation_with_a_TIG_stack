@@ -74,6 +74,14 @@ SaltStack supports event driven infrastructure
 
 SaltStack competes primarily with Puppet, Chef, StackStorm, and Ansible. 
 
+# Looking for more information about Junos monitoring with a TIG stack: 
+
+you can refer to these repositories:
+- https://github.com/ksator/collect_telemetry_from_junos_with_telegraf
+- https://github.com/ksator/collect_snmp_with_telegraf
+- https://github.com/ksator/telegraf_with_snmp_mib
+- https://github.com/ksator/junos_monitoring_with_a_TIG_stack
+
 # requirements on the Ubuntu host
 
 ## install these dependencies
@@ -207,7 +215,7 @@ set system services netconf ssh
 
 
 
-# Usage
+# How to use this repository
 
 ## clone the repository
 ```
