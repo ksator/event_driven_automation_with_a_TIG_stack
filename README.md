@@ -1,12 +1,77 @@
+# What is a TIG stack
+
+A TIG stack uses:
+- Telegraf to collect data and to write the collected data in Influxdb
+- Influxdb to store the data collected
+- Grafana to visualize the data stored in Influxdb
+
 # About this repository
 
-This repository provides a docker-compose file for SaltStack master and minion, including the dependencies to use Junos modules and Junos syslog engine.  
-It also has a python script that generate saltstack files from templates.  
+A spines and leaves IP fabric with Junos devices.  
+
+One Ubuntu VM: 
+- Telegraf collects data from Junos devices. 
+- The data collected is stored in Influxdb. 
+- Grafana queries Influxdb and displays graphs.  
+- Grafana is configured with alerts. When there is an alert, Grafana sends a webhook notification to SaltStack (http post with a json body)
+- SaltStack reacts to this webhook, and creates a new ticket (or update an existing ticket) on request tracker. 
+
+This repository provides a [docker-compose.yml](docker-compose.yml) file for: 
+- telegraf 
+- influxdb
+- grafana
+- SaltStack master
+- SatStack minion 
+- request tracker 
+
+It also has: 
+-  a python script [upgrade_junos.py](upgrade_junos.py) to upgrade Junos with network-agent and openconfig packages 
+-  a python script [configure_junos.py](configure_junos.py) to configure Junos devices
+-  a python script [audit_junos.py](audit_junos.py) to audit BGP sessions state 
+-  a python script [generate_telegraf_configuration.py](generate_telegraf_configuration.py) to generate Telegraf configuration files from templates.  
+-  a python script [generate_saltstack_configuration.py](generate_saltstack_configuration.py) to generate SaltStack files from templates.  
+-  a python script [start_saltstack.py](start_saltstack.py) to start Saltstack services (master and minion) and proxies (one daemon Junos device)
+
+It has also a [Makefile](makefile) to simplify the demo. 
+
 This repository has been tested with an Ubuntu host running 16.04 release.
 
-# requirements
+# Building blocks 
 
-You first need to install Docker and Docker-compose on your Ubuntu host 
+## Telegraf
+
+Telegraf is an open source collector written in GO.
+Telegraf collects data and writes them into a database.
+It is plugin-driven (it has input plugins, output plugins, ...)
+
+To monitor Junos, we can use the telegraf input plugin jti_openconfig_telemetry (grpc client to collect telemetry on junos devices) and the telegraf input plugin snmp
+
+Telegraf has an output plugin to write the data collected to Influxdb. It supports others output plugins as well.
+
+## Influxdb
+Influxdb is an open source time series database written in GO.
+
+## Grafana
+Grafana is an open source tool used to visualize time series data.
+It supports InfluxDB and other backends.
+It runs as a web application.
+It is written in GO.
+
+## Request Tracker
+
+Request Tracker (RT) is an open source issue tracking system.
+
+## SaltStack
+
+Salt is a remote execution tool and configuration management system:
+- remote execution: run commands on various machines in parallel with a flexible targeting system (salt execution modules)
+- configuration management: establishes a client-server model to bring infrastructure components in line with a given policy (salt state modules in sls files)
+
+SaltStack supports event driven infrastructure 
+
+SaltStack competes primarily with Puppet, Chef, StackStorm, and Ansible. 
+
+# requirements on the Ubuntu host
 
 ## install these dependencies
 ```
@@ -101,6 +166,53 @@ sudo chmod +x /usr/local/bin/docker-compose
 ```
 docker-compose --version
 ```
+
+# requirements on Junos devices
+
+In this demo Telegraf will use Openconfig telemetry to collect data from Junos devices.  
+
+## Junos packages
+
+In order to collect data from Junos using openconfig telemetry, the devices require the Junos packages ```openconfig``` and ```network agent```  
+Starting with Junos OS Release 18.3R1, the Junos OS image includes these 2 packages; therefore, you do not need anymore to install them separately on your device.  
+If you are using an older Junos release, it is required to install these two packages separately.  
+
+Run this command to verify:
+```
+jcluser@vMX1> show version | match "Junos:|openconfig|na telemetry"
+```
+
+You can use the python script [upgrade-junos.py](upgrade-junos.py) to install these 2 packages on your Junos devices: 
+- `git clone https://github.com/ksator/event_driven_automation_with_a_TIG_stack.git`
+- `cd event_driven_automation_with_a_TIG_stack`
+- download the Junos packages ```openconfig``` and ```network agent``` from ```http://download.juniper.net/``` and save them in the `event_driven_automation_with_a_TIG_stack` directory  
+- Update the file [variables.yml](variables.yml]) with your devices details `vi variables.yml`
+- Execute the python script [upgrade-junos.py](upgrade-junos.py) `python ./upgrade-junos.py`
+
+
+## Junos configuration 
+
+This sort of configuration is required if you use the telegraf input plugin `snmp`
+```
+jcluser@vMX-1> show configuration snmp
+community public;
+```
+This sort of configuration is required if you use the telegraf input plugin `jti_openconfig_telemetry`
+```
+jcluser@vMX-1> show configuration system services extension-service | display set
+set system services extension-service request-response grpc clear-text port 32768
+set system services extension-service request-response grpc skip-authentication
+set system services extension-service notification allow-clients address 0.0.0.0/0
+```
+This sort of configuration is required if you use NETCONF
+```
+jcluser@vMX-1> show configuration system services netconf | display set
+set system services netconf ssh
+```
+
+
+
+
 # Usage
 
 ## clone the repository
