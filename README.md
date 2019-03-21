@@ -1,3 +1,5 @@
+This repository is about Event driven automation with a TIG stack and SaltStack.   
+
 # What is a TIG stack
 
 A TIG stack uses:
@@ -6,8 +8,6 @@ A TIG stack uses:
 - Grafana to visualize the data stored in Influxdb
 
 # About this repository
-
-This repository is about Event driven automation with a TIG stack and SaltStack.   
 
 Junos devices (spines and leaves IP fabric)  
 ![topology.png](resources/topology.png)  
@@ -207,13 +207,12 @@ set system services netconf ssh
 
 
 
-
 # Usage
 
 ## clone the repository
 ```
-git clone https://github.com/ksator/saltstack_junos_docker_compose.git
-cd saltstack_junos_docker_compose
+git clone https://github.com/ksator/event_driven_automation_with_a_TIG_stack.git
+cd event_driven_automation_with_a_TIG_stack
 ```
 
 ## Update the variables
@@ -221,6 +220,43 @@ cd saltstack_junos_docker_compose
 ```
 vi variables.yml
 ```
+
+## Junos 
+
+### Upgrade Junos 
+
+In this demo Telegraf will use Openconfig telemetry to collect data from Junos devices. 
+In order to collect data from Junos using openconfig telemetry, the devices require the Junos packages `openconfig` and `network agent`  
+
+Run this command to verify if your devices are using these packages:  
+```
+jcluser@vMX1> show version | match "Junos:|openconfig|na telemetry"
+```
+
+You can use the python script [upgrade-junos.py](upgrade-junos.py) to install these 2 packages on your Junos devices: 
+- download the Junos packages ```openconfig``` and ```network agent``` from ```http://download.juniper.net/``` and save them in the `event_driven_automation_with_a_TIG_stack` directory  
+- Execute the python script [upgrade-junos.py](upgrade-junos.py) `python ./upgrade-junos.py`
+
+###  Configure Junos
+
+Run these commands to configure the Junos devices (interfaces, BGP, grpc, snmp, ...)
+```
+more junos_configuration/junos.yml
+more junos_configuration/junos.j2
+python configure_junos.py
+ls junos_configuration
+```
+
+###  Audit BGP sessions state
+
+Run this command to audit BGP sessions state
+
+```
+python audit_junos.py
+```
+
+
+
 
 ## Generate SaltStack files
 
