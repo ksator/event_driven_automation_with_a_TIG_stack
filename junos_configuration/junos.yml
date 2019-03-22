@@ -1,4 +1,5 @@
 vMX1:
+  hostname: vMX1
   local_asn: 101
   neighbors:
    - interface: ge-0/0/0
@@ -22,6 +23,7 @@ vMX1:
      peer_ip: 192.168.1.7 
      local_ip: 192.168.1.6
 vMX2:
+  hostname: vMX2
   local_asn: 102
   neighbors:
    - interface: ge-0/0/0
@@ -45,6 +47,7 @@ vMX2:
      peer_ip: 192.168.2.7 
      local_ip: 192.168.2.6
 vMX3:
+  hostname: vMX3
   local_asn: 103
   neighbors:
    - interface: ge-0/0/0
@@ -68,6 +71,7 @@ vMX3:
      peer_ip: 192.168.3.7 
      local_ip: 192.168.3.6
 vMX4:
+  hostname: vMX4
   local_asn: 104
   neighbors:
    - interface: ge-0/0/0
@@ -86,6 +90,7 @@ vMX4:
      peer_ip: 192.168.3.0 
      local_ip: 192.168.3.1
 vMX5:
+  hostname: vMX5
   local_asn: 105
   neighbors:
    - interface: ge-0/0/0
@@ -104,6 +109,7 @@ vMX5:
      peer_ip: 192.168.3.2 
      local_ip: 192.168.3.3
 vMX6:
+  hostname: vMX6
   local_asn: 106
   neighbors:
    - interface: ge-0/0/0
@@ -122,6 +128,7 @@ vMX6:
      peer_ip: 192.168.3.4 
      local_ip: 192.168.3.5
 vMX7:
+  hostname: vMX7
   local_asn: 107
   neighbors:
    - interface: ge-0/0/0
