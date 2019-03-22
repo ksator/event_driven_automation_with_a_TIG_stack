@@ -32,6 +32,18 @@ grafana-cli:
 	@echo "======================================================================"
 	docker exec -i -t grafana /bin/bash
 
+master-cli:
+	@echo "======================================================================"
+	@echo "start a shell session in the saltstack master container"
+	@echo "======================================================================"
+	docker exec -i -t master bash
+
+minion-cli:
+	@echo "======================================================================"
+	@echo "start a shell session in the saltstack minion container"
+	@echo "======================================================================"
+	docker exec -i -t minion1 bash
+
 telegraf-openconfig-cli:
 	@echo "======================================================================"
 	@echo "start a shell session in the telegraf container for Openconfig"
