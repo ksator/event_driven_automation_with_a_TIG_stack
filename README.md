@@ -14,7 +14,9 @@ BGP (data pushed with Openconfig)
 Grafana is configured to send a webhook notification (HTTP POST with a JSON body) to SaltStack when one of the spine has less than 4 BGP sessions established.  
 SaltStack is configured to manage automatically tickets on Request Tracker.   
 
-The BGP session between the spine vMX1 and the leaf vMX5 is not anymore established.   
+The BGP session between the spine vMX1 and the leaf vMX5 is not anymore established.  
+So the number of established BGP session on vMX1 is now 3 and the number of established BGP session on vMX5 is now 2  
+So Grafana is altering (so it sent a webhook notification to SaltStack)  
 ![BGP-issue-vMX1-vMX5.png](resources/BGP-issue-vMX1-vMX5.png)  
 ![BGP-alert-vMX1-vMX5.png](resources/BGP-alert-vMX1-vMX5.png)  
  
